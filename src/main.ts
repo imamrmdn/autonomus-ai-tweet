@@ -22,7 +22,7 @@ const twBearer = bearerTw.readOnly;
 
 //
 let twCounter = 0
-let job: CronJob;
+let job: CronJob | null = null;
 
 async function sendTweet(){
   //
@@ -43,7 +43,7 @@ async function sendTweet(){
 
   }else{
     console.log('all tweet already sent');
-    job.stop(); // Hentikan cron job setelah 10 tweet terkirim
+    if (job) job.stop(); // Hentikan cron job setelah 10 tweet terkirim
   }
 }
 
@@ -70,7 +70,7 @@ async function main() {
   );
 
   const job = new CronJob(
-    '*/5 * * * *',
+    '0 * * * * ', //0 * * * * //*/5 * * * * 
     () => {
       console.log('Running Tweet');
       sendTweet();
