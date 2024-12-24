@@ -7,13 +7,14 @@ import { tweetsData } from './utils/tweet';
 
 import 'dotenv/config';
 
+//
 const clientTw = new TwitterApi({
   appKey: process.env.API_KEY,
   appSecret: process.env.API_KEY_SECRET,
   accessToken: process.env.ACCESS_TOKEN,
   accessSecret: process.env.ACCESS_TOKEN_SECRET,
 });
-
+//
 const bearerTw = new TwitterApi(process.env.BEARER_TOKEN);
 
 //
@@ -22,29 +23,47 @@ const twBearer = bearerTw.readOnly;
 
 //
 let twCounter = 0
-let job: CronJob | null = null;
 
 async function sendTweet(){
   //
   // const tweetContent = `Hello, world! This tweet has an image. 🚀\n\nAutomate by: @cotabimcotab`;
   //
-  if(twCounter < tweetsData.length){
-    const tweetContent = tweetsData[twCounter].tweet;
-      //
-      try {
-        // send tweet
-        await tw.v2.userByUsername('cotabimcotab');
-        await tw.v2.tweet(tweetContent);
-        console.log(`Tweet #${twCounter + 1} succesfuly sent:`, tweetContent);
-        twCounter++;
-      } catch (error) {
-        console.error('Error sent tweet', error);
-      }
+  // if(twCounter < tweetsData.length){
+  //   const tweetContent = tweetsData[twCounter].tweet;
+  //     //
+  //     try {
+  //       // send tweet
+  //       await tw.v2.userByUsername('cotabimcotab');
+  //       await tw.v2.tweet(tweetContent);
+  //       console.log(`Tweet #${twCounter + 1} succesfuly sent:`, tweetContent);
+  //       twCounter++;
+  //     } catch (error) {
+  //       console.error('Error sent tweet', error);
+  //     }
 
-  }else{
-    console.log('all tweet already sent');
-    if (job) job.stop(); // Hentikan cron job setelah 10 tweet terkirim
+  // }else{
+  //   console.log('all tweet already sent');
+  //   if (job) job.stop(); // Hentikan cron job setelah 10 tweet terkirim
+  // }
+
+  try {
+      const tweetContent = tweetsData[twCounter].tweet;
+      // send tweet
+      await tw.v2.userByUsername('cotabimcotab');
+      await tw.v2.tweet(tweetContent);
+      console.log(`Tweet #${twCounter + 1} succesfuly sent:`, tweetContent);
+      twCounter++;
+  } catch (error) {
+    if (error.code === 429) {
+      const resetTime = new Date(error.rateLimit.day.reset * 1000).toLocaleString();
+      console.log(
+        `Rate limit reached. Wait until: ${resetTime}. Remaining application quota: ${error.rateLimit.day.remaining}`
+      );
+    } else {
+      console.error('Error sent tweet', error);
+    }
   }
+
 }
 
 async function main() {
@@ -70,13 +89,19 @@ async function main() {
   );
 
   const job = new CronJob(
-    '0 * * * * ', //0 * * * * //*/5 * * * * 
+    '*/10 * * * *', //0 * * * * //*/5 * * * * 
     () => {
-      console.log('Running Tweet');
-      sendTweet();
+      //
+      if (twCounter < tweetsData.length) {
+        console.log('Running Tweet');
+        sendTweet();
+      } else {
+        console.log('All tweet already sent');
+        job.stop(); // Hentikan cronjob jika semua tweet sudah dikirim
+      }
     },
     () => {
-      console.log('tweet upload');
+      console.log('tweet succesfully sent.');
     },
     true
   );
