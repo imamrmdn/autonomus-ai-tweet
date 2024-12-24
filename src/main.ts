@@ -90,7 +90,7 @@ async function main() {
   );
 
   const job = new CronJob(
-    '*/12 * * * *', //0 * * * * //*/5 * * * * 
+    '*/5 * * * *', //0 * * * * //*/5 * * * * 
     () => {
       //
       if (twCounter < tweetsData.length) {
@@ -108,7 +108,7 @@ async function main() {
   );
   
   //
-  console.log('The cron job has started. A tweet will be sent every 15 minutes.');
+  console.log('The cron job has started. A tweet will be sent every 5 minutes.');
 
   //
   await app.listen(process.env.PORT ?? 3000);
