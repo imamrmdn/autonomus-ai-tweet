@@ -90,7 +90,7 @@ async function main() {
   );
 
   const job = new CronJob(
-    '*/15 * * * *', //0 * * * * //*/5 * * * * 
+    '*/12 * * * *', //0 * * * * //*/5 * * * * 
     () => {
       //
       if (twCounter < tweetsData.length) {
