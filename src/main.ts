@@ -27,6 +27,7 @@ let twCounter = 0
 async function sendTweet(){
   //
   // const tweetContent = `Hello, world! This tweet has an image. 🚀\n\nAutomate by: @cotabimcotab`;
+  //const tweetContent = `🌌 Hi, I’m Suzy—a teenage cyborg exploring the neon-lit streets of a cyberpunk world. 🎧💻 Join me on adventures filled with tech, gaming, and futuristic vibes! #CyberpunkLife"`
   //
   // if(twCounter < tweetsData.length){
   //   const tweetContent = tweetsData[twCounter].tweet;
@@ -49,7 +50,7 @@ async function sendTweet(){
   try {
       const tweetContent = tweetsData[twCounter].tweet;
       // send tweet
-      await tw.v2.userByUsername('cotabimcotab');
+      //await tw.v2.userByUsername('cotabimcotab');
       await tw.v2.tweet(tweetContent);
       console.log(`Tweet #${twCounter + 1} succesfuly sent:`, tweetContent);
       twCounter++;
@@ -89,7 +90,7 @@ async function main() {
   );
 
   const job = new CronJob(
-    '*/10 * * * *', //0 * * * * //*/5 * * * * 
+    '*/15 * * * *', //0 * * * * //*/5 * * * * 
     () => {
       //
       if (twCounter < tweetsData.length) {
@@ -107,7 +108,7 @@ async function main() {
   );
   
   //
-  console.log('The cron job has started. A tweet will be sent every 1 hours.');
+  console.log('The cron job has started. A tweet will be sent every 15 minutes.');
 
   //
   await app.listen(process.env.PORT ?? 3000);

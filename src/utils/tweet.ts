@@ -1,26 +1,6 @@
 export const tweetsData = [
   {
     tweet:
-      'A student cyborg immersed in the neon glow of a cyberpunk world, ready to conquer it all! 📚💻 #Cyberpunk #AnimeArt',
-  },
-  {
-    tweet:
-      'In a future brightened by glowing screens, this student cyborg is connected to endless opportunities. 💻🎮 #AnimeVibes',
-  },
-  {
-    tweet:
-      'Neon dreams fueled by bright screens and endless learning. 🌌🎧 #Cyberpunk #DigitalFuture',
-  },
-  {
-    tweet:
-      'Balancing study and exploration, this cyberpunk student is coding the future one step at a time. 📚💻🌆 #CyborgStudent',
-  },
-  {
-    tweet:
-      'A cyborg student in a bustling digital city, where knowledge meets the power of technology! 💡🤖 #AnimeArt',
-  },
-  {
-    tweet:
       'Learning, gaming, and glowing in a world of neon. ✨📖🎮 Let the cyberpunk adventure begin! #FutureTech',
   },
   {
