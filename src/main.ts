@@ -104,17 +104,17 @@ async function main() {
       }
     },
     () => {
-      console.log('tweet succesfully sent.');
+      logger.log('all tweet succesfully sent.');
     },
     true
   );
   
   //
-  console.log('The cron job has started. A tweet will be sent every 5 minutes.');
+  logger.log('The cron job has started. A tweet will be sent every 5 minutes.');
 
   //
   await app.listen(process.env.PORT ?? 3000);
-  console.log(`tweet bot is running at: ${await app.getUrl()}`)
+  logger.log(`tweet bot is running at: ${await app.getUrl()}`)
 }
 
 main();
