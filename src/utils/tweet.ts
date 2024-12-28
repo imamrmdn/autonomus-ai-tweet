@@ -1,30 +1,6 @@
 export const tweetsData = [
   {
     tweet:
-      'AI-powered crypto trading bots are widely used to automate trading strategies.',
-  },
-  {
-    tweet:
-      'AI-Driven Trading Bots usually use: Machine Learning (ML): Analyzes historical price data to build predictive models for forecasting market trends.',
-  },
-  {
-    tweet:
-      'Sentiment Analysis: Analyze social media and news sentiment to predict market movements.',
-  },
-  {
-    tweet:
-      'Technical Analysis: Identify patterns and trends for price prediction.',
-  },
-  {
-    tweet:
-      'High-Frequency Trading (HFT): Execute trades at ultra-fast speeds to capitalize on minute price fluctuations.',
-  },
-  {
-    tweet:
-      'AI agents play a critical role in fraud detection and security by analyzing transaction patterns, identifying anomalies, and preventing unauthorized activities in real time.',
-  },
-  {
-    tweet:
       'AI agents boost blockchain security by detecting fraud, identifying anomalies, preventing hacks, and strengthening AML and KYC compliance.',
   },
   {
@@ -34,5 +10,25 @@ export const tweetsData = [
   {
     tweet:
       'Key Benefits of AI Agent in Crypto:\n⚡️ Speed: Real-time monitoring & decisions.\n✅ Accuracy: Analyzes large data sets.\n🤖 Automation: Minimizes human intervention.\n🛡️ Security: Boosts fraud detection & validation.',
+  },
+  {
+    tweet:
+      'AI-driven bots can optimize cryptocurrency trading strategies by analyzing vast amounts of market data and adjusting strategies in real-time.',
+  },
+  {
+    tweet:
+      'Blockchain AI can identify suspicious activities like wash trading and pump-and-dump schemes, helping to keep the crypto market transparent.',
+  },
+  {
+    tweet:
+      'AI-based predictive models help crypto traders to anticipate market movements and make smarter, data-driven decisions.',
+  },
+  {
+    tweet:
+      'AI-powered risk management tools enable crypto traders to mitigate losses by automatically adjusting their portfolios based on real-time data.',
+  },
+  {
+    tweet:
+      'AI systems are revolutionizing crypto compliance by enabling faster and more accurate Know Your Customer (KYC) and Anti-Money Laundering (AML) processes.',
   },
 ];

@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, Logger } from '@nestjs/common';
 import { TwitterApi } from 'twitter-api-v2';
 import { CronJob } from 'cron';
 import { tweetsData } from './utils/tweet';
 
 import 'dotenv/config';
+
+const logger = new Logger('Tweet-Bot');
 
 //
 const clientTw = new TwitterApi({
@@ -52,16 +54,16 @@ async function sendTweet(){
       // send tweet
       //await tw.v2.userByUsername('cotabimcotab');
       await tw.v2.tweet(tweetContent);
-      console.log(`Tweet #${twCounter + 1} succesfuly sent:`, tweetContent);
+      logger.log(`Tweet #${twCounter + 1} succesfuly sent:`, tweetContent);
       twCounter++;
   } catch (error) {
     if (error.code === 429) {
       const resetTime = new Date(error.rateLimit.day.reset * 1000).toLocaleString();
-      console.log(
+      logger.warn(
         `Rate limit reached. Wait until: ${resetTime}. Remaining application quota: ${error.rateLimit.day.remaining}`
       );
     } else {
-      console.error('Error sent tweet', error);
+      logger.error('Error sent tweet', error);
     }
   }
 
@@ -94,10 +96,10 @@ async function main() {
     () => {
       //
       if (twCounter < tweetsData.length) {
-        console.log('Running Tweet');
+        logger.log('Running Tweet');
         sendTweet();
       } else {
-        console.log('All tweet already sent');
+        logger.log('All tweet already sent');
         job.stop(); // Hentikan cronjob jika semua tweet sudah dikirim
       }
     },
