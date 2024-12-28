@@ -23,4 +23,16 @@ export const tweetsData = [
     tweet:
       'AI agents play a critical role in fraud detection and security by analyzing transaction patterns, identifying anomalies, and preventing unauthorized activities in real time.',
   },
+  {
+    tweet:
+      'AI agents boost blockchain security by detecting fraud, identifying anomalies, preventing hacks, and strengthening AML and KYC compliance.',
+  },
+  {
+    tweet:
+      'AI tools audit smart contracts to enhance security by scanning for vulnerabilities like reentrancy attacks and testing scenarios to ensure compliance.',
+  },
+  {
+    tweet:
+      'Key Benefits of AI Agent in Crypto:\n⚡️ Speed: Real-time monitoring & decisions.\n✅ Accuracy: Analyzes large data sets.\n🤖 Automation: Minimizes human intervention.\n🛡️ Security: Boosts fraud detection & validation.',
+  },
 ];
